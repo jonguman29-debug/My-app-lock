@@ -14,17 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
+      - name: Set up Java
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: "17"
+          java-version: '17'
 
-      - name: Install Gradle
-        run: |
-          wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip
-          unzip -q gradle-8.7-bin.zip
-          echo "$PWD/gradle-8.7/bin" >> $GITHUB_PATH
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Build APK
         run: gradle assembleDebug
